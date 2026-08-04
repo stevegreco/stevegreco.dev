@@ -1,4 +1,8 @@
-type Theme = 'theme-light' | 'dark' | 'system'
+export type Theme = 'theme-light' | 'dark' | 'system'
+
+export function isDarkTheme(theme: Theme, prefersDark: boolean) {
+  return theme === 'dark' || (theme === 'system' && prefersDark)
+}
 
 export function getTheme(): Theme {
   if (typeof window === 'undefined') return 'theme-light'
@@ -12,10 +16,10 @@ export function getTheme(): Theme {
 export function setTheme(theme: Theme) {
   if (typeof window === 'undefined') return
   localStorage.setItem('theme', theme)
-  const isDark =
-    theme === 'dark' ||
-    (theme === 'system' &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches)
+  const isDark = isDarkTheme(
+    theme,
+    window.matchMedia('(prefers-color-scheme: dark)').matches,
+  )
   document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
   if (isDark) {
     document.documentElement.setAttribute('data-theme', 'dark')

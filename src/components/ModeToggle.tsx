@@ -1,22 +1,8 @@
 import * as React from 'react'
 import { Moon, Sun } from 'lucide-react'
-import { getTheme, setTheme } from '@/lib/theme'
+import { setTheme } from '@/lib/theme'
 
 import { Button } from '@/components/ui/button'
-
-// Initialize theme immediately
-if (typeof window !== 'undefined') {
-  const savedTheme = localStorage.getItem('theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const isDark =
-    savedTheme === 'dark' || (savedTheme === 'system' && prefersDark)
-  document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
-  if (isDark) {
-    document.documentElement.setAttribute('data-theme', 'dark')
-  } else {
-    document.documentElement.removeAttribute('data-theme')
-  }
-}
 
 export function ModeToggle() {
   const [isDark, setIsDark] = React.useState(false)
@@ -24,15 +10,14 @@ export function ModeToggle() {
 
   React.useEffect(() => {
     setMounted(true)
-    // Check initial theme state
-    const theme = getTheme()
-    setIsDark(theme === 'dark')
+    setIsDark(document.documentElement.dataset.theme === 'dark')
   }, [])
 
   const toggleTheme = () => {
-    const newTheme = isDark ? 'theme-light' : 'dark'
+    const currentlyDark = document.documentElement.dataset.theme === 'dark'
+    const newTheme = currentlyDark ? 'theme-light' : 'dark'
     setTheme(newTheme)
-    setIsDark(!isDark)
+    setIsDark(!currentlyDark)
   }
 
   if (!mounted) {
