@@ -2,7 +2,7 @@
 interface Props {
   title: string
   date: string
-  company: string
+  company?: string
 }
 
 const { title, date, company }: Props = Astro.props
@@ -15,9 +15,7 @@ const { title, date, company }: Props = Astro.props
   <div
     class="flex justify-between items-center w-full text-muted-foreground text-sm"
   >
-    <div>
-      {company}
-    </div>
+    {company && <div>{company}</div>}
     <div>{date}</div>
   </div>
 </div>

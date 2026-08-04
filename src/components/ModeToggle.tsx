@@ -11,6 +11,11 @@ if (typeof window !== 'undefined') {
   const isDark =
     savedTheme === 'dark' || (savedTheme === 'system' && prefersDark)
   document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+  if (isDark) {
+    document.documentElement.setAttribute('data-theme', 'dark')
+  } else {
+    document.documentElement.removeAttribute('data-theme')
+  }
 }
 
 export function ModeToggle() {
@@ -42,9 +47,9 @@ export function ModeToggle() {
   return (
     <Button variant="outline" size="icon" onPress={toggleTheme}>
       {isDark ? (
-        <Moon className="h-[1.2rem] w-[1.2rem] transition-transform duration-200" />
-      ) : (
         <Sun className="h-[1.2rem] w-[1.2rem] transition-transform duration-200" />
+      ) : (
+        <Moon className="h-[1.2rem] w-[1.2rem] transition-transform duration-200" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

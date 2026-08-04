@@ -17,6 +17,13 @@ const { title, description, image = '/SocialImage.png' } = Astro.props
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 <!-- Theme Initialization -->
 <script is:inline>
   function applyTheme() {
@@ -30,11 +37,21 @@ const { title, description, image = '/SocialImage.png' } = Astro.props
       (theme === 'system' &&
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+    if (isDark) {
+      document.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+      document.documentElement.removeAttribute('data-theme')
+    }
   }
   applyTheme()
   document.addEventListener('astro:before-swap', function (ev) {
     var isDark = document.documentElement.classList.contains('dark')
     ev.newDocument.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+    if (isDark) {
+      ev.newDocument.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+      ev.newDocument.documentElement.removeAttribute('data-theme')
+    }
   })
   document.addEventListener('astro:after-swap', applyTheme)
 </script>

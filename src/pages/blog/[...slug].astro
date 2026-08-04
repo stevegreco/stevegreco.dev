@@ -22,10 +22,10 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 250))
 
 <Layout
   title={entry.data.title}
-  description="Blog Post for stevegreco.dev"
+  description={entry.body.split('\n\n').find(p => p.trim() && !p.startsWith('#'))?.slice(0, 160) ?? entry.data.title}
   image={`/blog/${entry.slug}.png`}
 >
-  <article class="max-w-prose mx-auto px-4 py-8 md:py-16">
+  <article class="max-w-(--primitives-layout-prose) mx-auto px-4 py-4 md:py-6">
     <a
       href="/blog"
       class="text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
@@ -33,30 +33,41 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 250))
       &larr; back to writing
     </a>
 
-    <header class="mt-6 mb-10">
-      <div class="flex items-center gap-3 text-xs font-mono text-muted-foreground mb-3">
+    <header class="mt-8 mb-10">
+      <div
+        class="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-4"
+      >
         <FormattedDate date={entry.data.date} />
         <span>&middot;</span>
         <span>{readingTime} min read</span>
-        {entry.data.tags && entry.data.tags.length > 0 && (
-          <>
-            <span>&middot;</span>
-            <span>{entry.data.tags.join(', ')}</span>
-          </>
-        )}
       </div>
-      <h1 class="text-3xl md:text-5xl font-bold tracking-tight leading-tight">
+      <h1
+        class="text-3xl md:text-5xl font-bold tracking-tight leading-tight mb-4"
+      >
         {entry.data.title}
       </h1>
+      {
+        entry.data.tags && entry.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {entry.data.tags.map((tag: string) => (
+              <span class="text-xs font-mono px-2.5 py-1 bg-muted text-muted-foreground rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
     </header>
 
-    {entry.data.image && (
-      <Image
-        class="w-full rounded-lg mb-10 object-cover"
-        src={entry.data.image}
-        alt={entry.data.title}
-      />
-    )}
+    {
+      entry.data.image && (
+        <Image
+          class="w-full rounded-lg mb-10 object-cover"
+          src={entry.data.image}
+          alt={entry.data.title}
+        />
+      )
+    }
 
     <Prose>
       <Content />

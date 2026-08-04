@@ -3,7 +3,6 @@ import { ClientRouter } from 'astro:transitions'
 import BaseHead from '@/components/Base/BaseHead.astro'
 import Header from '@/components/Base/Header.astro'
 import Footer from '@/components/Base/Footer.astro'
-import '@fontsource/inter'
 import '@fontsource/jetbrains-mono'
 import '../styles/base.css'
 
@@ -23,34 +22,10 @@ const { title, description, image } = Astro.props
   </head>
   <body>
     <Header />
-    <div class="mx-auto max-w-screen-xl px-6 py-6 lg:py-20">
+    <div class="mx-auto max-w-screen-xl px-6 py-6 lg:py-10">
       <slot />
     </div>
 
     <Footer />
-    <style is:global>
-      :root {
-        --accent: 136, 58, 234;
-        --accent-light: 224, 204, 250;
-        --accent-dark: 49, 10, 101;
-        --accent-gradient: linear-gradient(
-          45deg,
-          rgb(var(--accent)),
-          rgb(var(--accent-light)) 30%,
-          white 60%
-        );
-      }
-      code {
-        font-family:
-          Menlo,
-          Monaco,
-          Lucida Console,
-          Liberation Mono,
-          DejaVu Sans Mono,
-          Bitstream Vera Sans Mono,
-          Courier New,
-          monospace;
-      }
-    </style>
   </body>
 </html>

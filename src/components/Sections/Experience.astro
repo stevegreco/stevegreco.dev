@@ -5,7 +5,7 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card'
 import { LinkButton } from '@components/ui/link-button'
 ---
 
-<Card className="border border-slate-700/70 rounded-lg">
+<Card>
   <CardTitle className="text-lg inline-flex items-center gap-2">
     <Briefcase /> Work
   </CardTitle>
@@ -16,31 +16,18 @@ import { LinkButton } from '@components/ui/link-button'
         title="Senior Software Engineer IV"
         company="Stratfield Consulting"
       />
-      <JobEntry
-        date="2021 - 2024"
-        title="Senior Software Engineer & Tech Lead"
-        company="United States Steel Corporation"
-      />
-      <JobEntry
-        date="2017 - 2021"
-        title="Software Engineer III"
-        company="United States Steel Corporation"
-      />
-      <JobEntry
-        date="2015 - 2017"
-        title="Software Engineer II"
-        company="United States Steel Corporation"
-      />
-      <JobEntry
-        date="2014 - 2015"
-        title="Software Engineer I"
-        company="United States Steel Corporation"
-      />
-      <JobEntry
-        date="2013 - 2014"
-        title="Software Engineer Co-op "
-        company="United States Steel Corporation"
-      />
+
+      <div class="space-y-4">
+        <p class="text-xs font-mono text-muted-foreground uppercase tracking-wide">United States Steel Corporation</p>
+        <div class="grid gap-4 pl-3 border-l border-border">
+          <JobEntry date="2021 - 2024" title="Senior Software Engineer & Tech Lead" />
+          <JobEntry date="2017 - 2021" title="Software Engineer III" />
+          <JobEntry date="2015 - 2017" title="Software Engineer II" />
+          <JobEntry date="2014 - 2015" title="Software Engineer I" />
+          <JobEntry date="2013 - 2014" title="Software Engineer Co-op" />
+        </div>
+      </div>
+
       <LinkButton href="/Resume.pdf" target="_blank">
         Download Resume <Download />
       </LinkButton>

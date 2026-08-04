@@ -23,6 +23,9 @@ importers:
       '@fontsource/jetbrains-mono':
         specifier: ^5.2.8
         version: 5.2.8
+      '@stevegreco/design-system':
+        specifier: ^0.0.2
+        version: 0.0.2
       '@tailwindcss/vite':
         specifier: ^4.2.1
         version: 4.2.1(vite@6.4.1(@types/node@20.19.35)(jiti@2.6.1)(lightningcss@1.31.1)(yaml@2.8.2))
@@ -1585,6 +1588,9 @@ packages:
     resolution: {integrity: sha512-3NgmNyH3l/Hv6EvsWJbsvpcpUba6R8IREQ83nH83cyakCw7uM1arZKNfHwv1Wz6jgqrF/j4x5ELvR6PnK9nTcA==}
     engines: {node: '>= 8.0.0'}
     hasBin: true
+
+  '@stevegreco/design-system@0.0.2':
+    resolution: {integrity: sha512-Nb/Ajn0O9ltRBIocNjSXUvZWHQ5QW5h5O7SqxDXCc4TsHWALvaNO2TW/TDOicPenaDU7ONR3rXXzScc6bcjvfA==}
 
   '@swc/helpers@0.5.19':
     resolution: {integrity: sha512-QamiFeIK3txNjgUTNppE6MiG3p7TdninpZu0E0PbqVh1a9FNLT2FRhisaa4NcaX52XVhA5l7Pk58Ft7Sqi/2sA==}
@@ -5095,6 +5101,8 @@ snapshots:
     dependencies:
       fflate: 0.7.4
       string.prototype.codepointat: 0.2.1
+
+  '@stevegreco/design-system@0.0.2': {}
 
   '@swc/helpers@0.5.19':
     dependencies:
