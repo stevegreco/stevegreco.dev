@@ -1,11 +1,24 @@
-<div style="background-color: rgb(15 23 42) "align="center">
+# stevegreco.dev
 
-<img src="https://raw.githubusercontent.com/steveg152/stevegreco.dev/main/public/logo.svg"/>
-</div>
-<h1 style="margin-top: 36px" align="center"> stevegreco.dev </h1>
+Personal site and writing, built with [Astro](https://astro.build) and
+[Tailwind CSS](https://tailwindcss.com), deployed to Vercel. Design tokens come
+from [`@stevegreco/design-system`](https://www.npmjs.com/package/@stevegreco/design-system).
 
-<p align="center">Built with Astro and deployed to Vercel </p>
+## Development
 
-## Work in Progress
+```bash
+pnpm install
+pnpm dev      # start the dev server
+pnpm check    # type-check .astro and .ts files
+pnpm test     # run unit tests
+pnpm format   # format with Prettier
+pnpm build    # production build
+```
 
-This site is actively being developed as I figure out exactly what I want to do with it.
+## Content
+
+- Blog posts: `src/content/blog/*.md` (`title`, `description`, `date`, `tags`)
+- Projects: `src/content/projects/*.json` (`title`, `description`, `repo_url`, `tech`)
+
+Collections are defined in `src/content.config.ts`. Each post gets a generated
+Open Graph image at `/blog/<id>.png`.

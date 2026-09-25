@@ -2,17 +2,22 @@
 @import '@stevegreco/design-system/css';
 @plugin "@tailwindcss/typography";
 
+/* The design system switches themes via data-theme, not a .dark class. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
-  --font-display: var(--primitives-font-display);
-  --font-custom: var(--primitives-font-sans);
+  --font-sans: var(--primitives-font-sans);
   --font-mono: var(--primitives-font-mono);
+
+  /* Layout widths: the one place pages reach into design-system primitives. */
+  --container-article: var(--primitives-layout-prose);
 
   --color-background: var(--semantic-color-background-default);
   --color-foreground: var(--semantic-color-foreground-default);
   --color-border: var(--semantic-color-border-default);
   --color-primary: var(--semantic-color-accent-default);
   --color-primary-foreground: var(--semantic-color-accent-foreground);
-  --color-secondary: var(--semantic-color-secondary-default);
+  --color-secondary: var(--semantic-color-secondary-soft);
   --color-secondary-foreground: var(--semantic-color-foreground-default);
   --color-card: var(--semantic-color-background-raised);
   --color-card-foreground: var(--semantic-color-foreground-default);
@@ -23,34 +28,14 @@
   --color-accent: var(--semantic-color-accent-soft);
   --color-accent-foreground: var(--semantic-color-accent-default);
   --color-destructive: var(--semantic-color-status-danger-default);
-  --color-destructive-foreground: var(--semantic-color-status-danger-background);
+  --color-destructive-foreground: var(--semantic-color-foreground-on-accent);
   --color-input: var(--semantic-color-border-default);
   --color-ring: var(--semantic-color-accent-default);
-  --color-chart-1: oklch(0.646 0.222 41.116);
-  --color-chart-2: oklch(0.6 0.118 184.704);
-  --color-chart-3: oklch(0.398 0.07 227.392);
-  --color-chart-4: oklch(0.828 0.189 84.429);
-  --color-chart-5: oklch(0.769 0.188 70.08);
-  --color-astro-logo: var(--astro-logo);
 }
 
 @layer base {
   :root {
     --tw-prose-headings: var(--semantic-color-foreground-default);
-    --radius: 0.625rem;
-    --astro-logo: #17191e;
-    --sidebar: var(--semantic-color-background-raised);
-    --sidebar-foreground: var(--semantic-color-foreground-default);
-    --sidebar-primary: var(--semantic-color-accent-default);
-    --sidebar-primary-foreground: var(--semantic-color-accent-foreground);
-    --sidebar-accent: var(--semantic-color-background-muted);
-    --sidebar-accent-foreground: var(--semantic-color-foreground-default);
-    --sidebar-border: var(--semantic-color-border-default);
-    --sidebar-ring: var(--semantic-color-accent-default);
-  }
-
-  :root[data-theme="dark"] {
-    --astro-logo: #e7e9eb;
   }
 
   a {

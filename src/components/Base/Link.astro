@@ -4,25 +4,13 @@ interface Props {
   external?: boolean
 }
 
-const { slug, external }: Props = Astro.props
+const { slug, external = false } = Astro.props
 ---
 
-{
-  external && (
-    <a
-      class="text-foreground text-sm lg:text-base inline-block"
-      target="_blank"
-      href={slug}
-    >
-      <slot />
-    </a>
-  )
-}
-
-{
-  !external && (
-    <a class="text-foreground text-sm lg:text-base inline-block" href={slug}>
-      <slot />
-    </a>
-  )
-}
+<a
+  class="text-foreground text-sm lg:text-base inline-block"
+  href={slug}
+  {...external && { target: '_blank', rel: 'noopener noreferrer' }}
+>
+  <slot />
+</a>

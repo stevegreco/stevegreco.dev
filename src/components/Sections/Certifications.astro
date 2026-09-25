@@ -1,32 +1,24 @@
 ---
 import { Image } from 'astro:assets'
 import githubImage from '@/assets/certs/github-foundations.png'
-import { BadgeCheck } from 'lucide-react'
-import { Card, CardContent, CardTitle } from '@/components/ui/card'
+import { BadgeCheck } from '@lucide/astro'
+import Card from '@/components/ui/Card.astro'
 ---
 
-<Card>
-  <CardTitle className="text-lg inline-flex items-center gap-2">
-    <BadgeCheck /> Certifications
-  </CardTitle>
-  <CardContent>
-    <div class="flex justify-start items-center gap-4">
-      <Image
-        src={githubImage}
-        alt="GitHub Fundamentals"
-        width="120"
-        height="120"
-      />
-      <div>
-        <h3 class="text-lg">GitHub Foundations</h3>
-        <p class="text-sm text-muted-foreground">Expires February 2027</p>
-        <a
-          class="text-sm text-foreground"
-          target="_blank"
-          href="https://www.credly.com/badges/5740de8e-7b61-4a05-8b99-ed2c4a2c7be2/public_url"
-          >View Details</a
-        >
-      </div>
+<Card title="Certifications">
+  <BadgeCheck slot="icon" aria-hidden="true" />
+  <div class="flex justify-start items-center gap-4">
+    <Image src={githubImage} alt="" width="120" height="120" />
+    <div>
+      <h3 class="text-lg">GitHub Foundations</h3>
+      <p class="text-sm text-muted-foreground">Expires February 2027</p>
+      <a
+        class="text-sm text-foreground"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.credly.com/badges/5740de8e-7b61-4a05-8b99-ed2c4a2c7be2/public_url"
+        >View details<span class="sr-only"> for GitHub Foundations</span></a
+      >
     </div>
-  </CardContent>
+  </div>
 </Card>

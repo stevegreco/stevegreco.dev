@@ -1,281 +1,109 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import Card from '@/components/ui/Card.astro'
+import { buttonClassName } from '@/components/ui/button-variants'
+
+interface Swatch {
+  name: string
+  description: string
+}
+
+const colorGroups: { title: string; swatches: Swatch[] }[] = [
+  {
+    title: 'Base Colors',
+    swatches: [
+      { name: 'background', description: 'Main background color' },
+      { name: 'foreground', description: 'Main text color' },
+      { name: 'card', description: 'Card background' },
+      { name: 'card-foreground', description: 'Card text color' },
+    ],
+  },
+  {
+    title: 'Accent Colors',
+    swatches: [
+      { name: 'primary', description: 'Primary brand color' },
+      { name: 'primary-foreground', description: 'Text on primary' },
+      { name: 'secondary', description: 'Secondary color' },
+      { name: 'secondary-foreground', description: 'Text on secondary' },
+      { name: 'accent', description: 'Accent color' },
+      { name: 'accent-foreground', description: 'Text on accent' },
+    ],
+  },
+  {
+    title: 'Utility Colors',
+    swatches: [
+      { name: 'muted', description: 'Muted background' },
+      { name: 'muted-foreground', description: 'Muted text' },
+      { name: 'destructive', description: 'Destructive/error color' },
+      { name: 'destructive-foreground', description: 'Text on destructive' },
+    ],
+  },
+  {
+    title: 'Borders & Inputs',
+    swatches: [
+      { name: 'border', description: 'Border color' },
+      { name: 'input', description: 'Input border/bg' },
+      { name: 'ring', description: 'Focus ring color' },
+    ],
+  },
+]
+
+const buttonVariants = [
+  'default',
+  'secondary',
+  'destructive',
+  'outline',
+  'ghost',
+  'link',
+] as const
+
+const inputClass =
+  'w-full rounded-md border border-input bg-background px-3 py-2 focus:outline-none focus:ring-2 focus:ring-ring'
 ---
 
 <Layout
   title="Theme Showcase - Steve Greco"
   description="Visual showcase of the site's color theme and design tokens"
+  noindex
 >
-  <div class="max-w-5xl mx-auto">
-    <h1 class="text-4xl font-bold mb-2">Theme Showcase</h1>
-    <p class="text-muted-foreground mb-8">
-      Visual reference for all color variables and theme tokens
+  <div class="mx-auto max-w-5xl">
+    <h1 class="mb-2 text-4xl font-bold">Theme Showcase</h1>
+    <p class="mb-8 text-muted-foreground">
+      Semantic colors and components. Primitive palettes live on
+      <a href="/design-tokens" class="text-primary hover:underline"
+        >/design-tokens</a
+      >.
     </p>
 
-    <!-- Base Colors -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Base Colors</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2 border"
-            style="background-color: var(--background); min-height: 6rem;"
-          >
-            &nbsp;
+    {
+      colorGroups.map((group) => (
+        <section class="mb-12">
+          <h2 class="mb-4 text-2xl font-semibold">{group.title}</h2>
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {group.swatches.map((swatch) => (
+              <div class="rounded-lg border p-4">
+                <div
+                  class="mb-2 h-24 w-full rounded border"
+                  style={`background-color: var(--color-${swatch.name})`}
+                />
+                <p class="font-mono text-sm">--color-{swatch.name}</p>
+                <p class="text-xs text-muted-foreground">
+                  {swatch.description}
+                </p>
+              </div>
+            ))}
           </div>
-          <p class="font-mono text-sm">--background</p>
-          <p class="text-xs text-muted-foreground">Main background color</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--foreground); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--foreground</p>
-          <p class="text-xs text-muted-foreground">Main text color</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2 border"
-            style="background-color: var(--card); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--card</p>
-          <p class="text-xs text-muted-foreground">Card background</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--card-foreground); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--card-foreground</p>
-          <p class="text-xs text-muted-foreground">Card text color</p>
-        </div>
-      </div>
-    </section>
+        </section>
+      ))
+    }
 
-    <!-- Accent Colors -->
     <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Accent Colors</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--primary); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--primary</p>
-          <p class="text-xs text-muted-foreground">Primary brand color</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--primary-foreground); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--primary-foreground</p>
-          <p class="text-xs text-muted-foreground">Text on primary</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--secondary); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--secondary</p>
-          <p class="text-xs text-muted-foreground">Secondary color</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--secondary-foreground); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--secondary-foreground</p>
-          <p class="text-xs text-muted-foreground">Text on secondary</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--accent); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--accent</p>
-          <p class="text-xs text-muted-foreground">Accent color</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--accent-foreground); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--accent-foreground</p>
-          <p class="text-xs text-muted-foreground">Text on accent</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Muted & Destructive -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Utility Colors</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--muted); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--muted</p>
-          <p class="text-xs text-muted-foreground">Muted background</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--muted-foreground); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--muted-foreground</p>
-          <p class="text-xs text-muted-foreground">Muted text</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--destructive); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--destructive</p>
-          <p class="text-xs text-muted-foreground">Destructive/error color</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--destructive-foreground); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--destructive-foreground</p>
-          <p class="text-xs text-muted-foreground">Text on destructive</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Rob Roy Palette -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Rob Roy Palette (Yellow/Gold)</h2>
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
-        {
-          [
-            { name: '50', var: 'rob-roy-50' },
-            { name: '100', var: 'rob-roy-100' },
-            { name: '200', var: 'rob-roy-200' },
-            { name: '300', var: 'rob-roy-300' },
-            { name: '400', var: 'rob-roy-400' },
-            { name: '500', var: 'rob-roy-500' },
-            { name: '600', var: 'rob-roy-600' },
-            { name: '700', var: 'rob-roy-700' },
-            { name: '800', var: 'rob-roy-800' },
-            { name: '900', var: 'rob-roy-900' },
-            { name: '950', var: 'rob-roy-950' },
-          ].map((color) => (
-            <div class="border rounded p-2">
-              <div
-                class="h-16 rounded mb-2"
-                style={`background-color: var(--${color.var})`}
-              />
-              <p class="font-mono text-xs">{color.name}</p>
-            </div>
-          ))
-        }
-      </div>
-    </section>
-
-    <!-- Blue Smoke Palette -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Blue Smoke Palette</h2>
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
-        {
-          [
-            { name: '50', var: 'blue-smoke-50' },
-            { name: '100', var: 'blue-smoke-100' },
-            { name: '200', var: 'blue-smoke-200' },
-            { name: '300', var: 'blue-smoke-300' },
-            { name: '400', var: 'blue-smoke-400' },
-            { name: '500', var: 'blue-smoke-500' },
-            { name: '600', var: 'blue-smoke-600' },
-            { name: '700', var: 'blue-smoke-700' },
-            { name: '800', var: 'blue-smoke-800' },
-            { name: '900', var: 'blue-smoke-900' },
-            { name: '950', var: 'blue-smoke-950' },
-          ].map((color) => (
-            <div class="border rounded p-2">
-              <div
-                class="h-16 rounded mb-2"
-                style={`background-color: var(--${color.var})`}
-              />
-              <p class="font-mono text-xs">{color.name}</p>
-            </div>
-          ))
-        }
-      </div>
-    </section>
-
-    <!-- Border & Input -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Borders & Inputs</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 rounded mb-2 border-4"
-            style="border-color: var(--border)"
-          ></div>
-          <p class="font-mono text-sm">--border</p>
-          <p class="text-xs text-muted-foreground">Border color</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--input); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--input</p>
-          <p class="text-xs text-muted-foreground">Input border/bg</p>
-        </div>
-        <div class="border rounded-lg p-4">
-          <div
-            class="h-24 w-full rounded mb-2"
-            style="background-color: var(--ring); min-height: 6rem;"
-          >
-            &nbsp;
-          </div>
-          <p class="font-mono text-sm">--ring</p>
-          <p class="text-xs text-muted-foreground">Focus ring color</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Typography Examples -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Typography</h2>
-      <div class="border rounded-lg p-6 space-y-4 bg-card">
-        <h1 class="text-4xl font-bold">Heading 1</h1>
-        <h2 class="text-3xl font-semibold">Heading 2</h2>
-        <h3 class="text-2xl font-semibold">Heading 3</h3>
-        <h4 class="text-xl font-semibold">Heading 4</h4>
+      <h2 class="mb-4 text-2xl font-semibold">Typography</h2>
+      <div class="space-y-4 rounded-lg border bg-card p-6">
+        <p class="text-4xl font-bold">Heading 1</p>
+        <p class="text-3xl font-semibold">Heading 2</p>
+        <p class="text-2xl font-semibold">Heading 3</p>
+        <p class="text-xl font-semibold">Heading 4</p>
         <p class="text-base">
           This is regular body text. The quick brown fox jumps over the lazy
           dog.
@@ -284,192 +112,110 @@ import Layout from '@/layouts/Layout.astro'
           This is small muted text. Often used for captions or secondary
           information.
         </p>
-        <a href="#" class="text-primary hover:underline">This is a link</a>
+        <p class="font-mono text-sm">This is monospace text.</p>
       </div>
     </section>
 
-    <!-- Component Examples -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Component Examples</h2>
+    <section class="mb-12 space-y-8">
+      <h2 class="text-2xl font-semibold">Components</h2>
 
-      <!-- Cards -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold mb-3">Cards</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="border rounded-lg p-6 bg-card text-card-foreground">
-            <h4 class="text-lg font-semibold mb-2">Default Card</h4>
-            <p class="text-sm text-muted-foreground mb-3">
-              Uses <code class="text-xs bg-muted px-1 py-0.5 rounded">--card</code> background with <code class="text-xs bg-muted px-1 py-0.5 rounded">--card-foreground</code> text
-            </p>
-            <p class="text-sm">Card content goes here with proper contrast.</p>
-          </div>
+      <div>
+        <h3 class="mb-3 text-lg font-semibold">Card</h3>
+        <Card title="Card title">
+          <p class="text-sm text-muted-foreground">
+            Uses <code>--card</code> background with
+            <code>--card-foreground</code> text.
+          </p>
+        </Card>
+      </div>
 
-          <div class="border border-primary/20 rounded-lg p-6 bg-primary/5">
-            <h4 class="text-lg font-semibold mb-2 text-primary">Featured Card</h4>
-            <p class="text-sm text-muted-foreground mb-3">
-              Uses <code class="text-xs bg-muted px-1 py-0.5 rounded">--primary</code> accent
-            </p>
-            <p class="text-sm">Highlighted content with primary color accent.</p>
-          </div>
+      <div>
+        <h3 class="mb-3 text-lg font-semibold">Buttons</h3>
+        <div class="flex flex-wrap items-start gap-3">
+          {
+            buttonVariants.map((variant) => (
+              <button type="button" class={buttonClassName({ variant })}>
+                {variant}
+              </button>
+            ))
+          }
+          <button type="button" class={buttonClassName({})} disabled>
+            disabled
+          </button>
         </div>
       </div>
 
-      <!-- Buttons -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold mb-3">Buttons</h3>
-        <div class="flex gap-3 flex-wrap items-start">
-          <div class="flex flex-col gap-2">
-            <button
-              style="background-color: var(--primary); color: var(--primary-foreground)"
-              class="px-4 py-2 rounded-md font-medium transition-opacity hover:opacity-90"
-            >
-              Primary
-            </button>
-            <span class="text-xs text-muted-foreground">--primary / --primary-foreground</span>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <button
-              style="background-color: var(--secondary); color: var(--secondary-foreground)"
-              class="px-4 py-2 rounded-md font-medium transition-opacity hover:opacity-90"
-            >
-              Secondary
-            </button>
-            <span class="text-xs text-muted-foreground">--secondary / --secondary-foreground</span>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <button
-              style="background-color: var(--destructive); color: var(--destructive-foreground)"
-              class="px-4 py-2 rounded-md font-medium transition-opacity hover:opacity-90"
-            >
-              Destructive
-            </button>
-            <span class="text-xs text-muted-foreground">--destructive / --destructive-foreground</span>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <button
-              style="border: 1px solid var(--input); color: var(--foreground)"
-              class="px-4 py-2 rounded-md font-medium bg-background hover:bg-accent transition-colors"
-            >
-              Outline
-            </button>
-            <span class="text-xs text-muted-foreground">--input / --foreground</span>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <button
-              class="px-4 py-2 rounded-md font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              Ghost
-            </button>
-            <span class="text-xs text-muted-foreground">--accent on hover</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Form Inputs -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold mb-3">Form Inputs</h3>
-        <div class="space-y-4 max-w-md">
+      <div>
+        <h3 class="mb-3 text-lg font-semibold">Form Inputs</h3>
+        <div class="max-w-md space-y-4">
           <div>
-            <label class="text-sm font-medium mb-1.5 block">Default Input</label>
+            <label for="theme-input" class="mb-1.5 block text-sm font-medium"
+              >Default input</label
+            >
             <input
+              id="theme-input"
               type="text"
               placeholder="Enter text..."
-              style="border: 1px solid var(--input); background-color: var(--background)"
-              class="w-full px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+              class={inputClass}
             />
-            <p class="text-xs text-muted-foreground mt-1">Uses --input border, --ring for focus</p>
           </div>
-
           <div>
-            <label class="text-sm font-medium mb-1.5 block">Disabled Input</label>
+            <label
+              for="theme-input-disabled"
+              class="mb-1.5 block text-sm font-medium">Disabled input</label
+            >
             <input
+              id="theme-input-disabled"
               type="text"
               placeholder="Disabled..."
               disabled
-              style="border: 1px solid var(--input); background-color: var(--muted)"
-              class="w-full px-3 py-2 rounded-md opacity-50 cursor-not-allowed"
+              class={`${inputClass} cursor-not-allowed bg-muted opacity-50`}
             />
-            <p class="text-xs text-muted-foreground mt-1">Uses --muted background when disabled</p>
           </div>
         </div>
       </div>
 
-      <!-- Alerts/Notifications -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold mb-3">Alerts & Badges</h3>
+      <div>
+        <h3 class="mb-3 text-lg font-semibold">Alerts & Badges</h3>
         <div class="space-y-3">
-          <div class="border-l-4 border-primary bg-primary/10 p-4 rounded">
-            <p class="font-medium mb-1">Info Alert</p>
-            <p class="text-sm text-muted-foreground">Uses --primary for accent border</p>
+          <div class="rounded border-l-4 border-primary bg-accent p-4">
+            <p class="mb-1 font-medium">Info alert</p>
+            <p class="text-sm text-muted-foreground">
+              Uses --primary for the accent border
+            </p>
           </div>
-
-          <div class="border-l-4 border-destructive bg-destructive/10 p-4 rounded">
-            <p class="font-medium mb-1">Error Alert</p>
-            <p class="text-sm text-muted-foreground">Uses --destructive for accent border</p>
+          <div class="rounded border-l-4 border-destructive bg-muted p-4">
+            <p class="mb-1 font-medium">Error alert</p>
+            <p class="text-sm text-muted-foreground">
+              Uses --destructive for the accent border
+            </p>
           </div>
-
-          <div class="flex gap-2 flex-wrap">
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary text-primary-foreground">
-              Primary Badge
-            </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">
-              Secondary Badge
-            </span>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-muted text-muted-foreground">
-              Muted Badge
-            </span>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="rounded-full bg-primary px-2.5 py-0.5 text-xs font-medium text-primary-foreground"
+              >Primary badge</span
+            >
+            <span
+              class="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground"
+              >Secondary badge</span
+            >
+            <span
+              class="rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground"
+              >Muted badge</span
+            >
           </div>
         </div>
       </div>
 
-      <!-- Navigation -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold mb-3">Navigation</h3>
-        <nav class="border rounded-lg p-4 bg-card">
-          <ul class="flex gap-6">
-            <li><a href="#" class="text-foreground hover:text-primary transition-colors font-medium">Home</a></li>
-            <li><a href="#" class="text-foreground hover:text-primary transition-colors font-medium">About</a></li>
-            <li><a href="#" class="text-primary font-medium border-b-2 border-primary pb-1">Active</a></li>
-            <li><a href="#" class="text-muted-foreground hover:text-foreground transition-colors">Disabled</a></li>
-          </ul>
-          <p class="text-xs text-muted-foreground mt-3">Active state uses --primary, muted uses --muted-foreground</p>
-        </nav>
-      </div>
-
-      <!-- Code Block -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold mb-3">Code Block</h3>
-        <div class="border rounded-lg p-4 bg-muted/50">
-          <pre class="text-sm"><code class="text-foreground">{`const theme = {
-  background: 'var(--background)',
-  foreground: 'var(--foreground)',
-  primary: 'var(--primary)',
-  ring: 'var(--ring)',
+      <div>
+        <h3 class="mb-3 text-lg font-semibold">Code Block</h3>
+        <pre
+          class="rounded-lg border bg-muted p-4 text-sm"><code>{`const theme = {
+  background: 'var(--color-background)',
+  foreground: 'var(--color-foreground)',
+  primary: 'var(--color-primary)',
+  ring: 'var(--color-ring)',
 }`}</code></pre>
-          <p class="text-xs text-muted-foreground mt-3">Uses --muted background with --foreground text</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Chart Colors -->
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-4">Chart Colors</h2>
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-        {
-          [1, 2, 3, 4, 5].map((num) => (
-            <div class="border rounded-lg p-4">
-              <div
-                class={`h-24 rounded mb-2`}
-                style={`background-color: var(--chart-${num})`}
-              />
-              <p class="font-mono text-sm">--chart-{num}</p>
-            </div>
-          ))
-        }
       </div>
     </section>
   </div>

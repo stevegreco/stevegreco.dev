@@ -2,26 +2,35 @@
 import NavButton from '@/components/NavButton.astro'
 import SocialLinks from '@/components/SocialLinks.astro'
 import MobileNavigation from './MobileNavigation.astro'
-import { ModeToggle } from '@/components/ModeToggle'
+import ThemeToggle from '@/components/ThemeToggle.astro'
 
 const pathname = Astro.url.pathname
 ---
 
-<header class="lg:sticky lg:top-0 bg-background z-[100] relative border-b border-border">
+<header
+  class="lg:sticky lg:top-0 bg-background z-[100] relative border-b border-border"
+>
   <div
     class="flex justify-between items-center mx-auto max-w-screen-xl px-6 h-16 z-[100] w-full"
   >
     <div class="flex items-center gap-8">
       <a class="group" href="/">
-        <span class="font-mono font-semibold text-lg tracking-tight">steve.greco</span>
-        <span class="hidden md:inline text-xs text-muted-foreground ml-2 font-mono">// software engineer</span>
+        <span class="font-mono font-semibold text-lg tracking-tight"
+          >steve.greco</span
+        >
+        <span
+          class="hidden md:inline text-xs text-muted-foreground ml-2 font-mono"
+          >// software engineer</span
+        >
       </a>
       <nav class="hidden lg:flex items-center gap-6 text-sm font-mono">
         <a
           href="/blog"
           class:list={[
             'transition-colors hover:text-primary',
-            pathname.startsWith('/blog') ? 'text-primary font-medium' : 'text-muted-foreground',
+            pathname.startsWith('/blog')
+              ? 'text-primary font-medium'
+              : 'text-muted-foreground',
           ]}
         >
           Writing
@@ -30,7 +39,9 @@ const pathname = Astro.url.pathname
           href="/about"
           class:list={[
             'transition-colors hover:text-primary',
-            pathname === '/about' || pathname === '/about/' ? 'text-primary font-medium' : 'text-muted-foreground',
+            pathname === '/about' || pathname === '/about/'
+              ? 'text-primary font-medium'
+              : 'text-muted-foreground',
           ]}
         >
           About
@@ -40,7 +51,7 @@ const pathname = Astro.url.pathname
 
     <div class="flex items-center gap-4">
       <span class="hidden lg:block"><SocialLinks /></span>
-      <ModeToggle client:load />
+      <ThemeToggle />
       <span class="lg:hidden"><NavButton /></span>
     </div>
   </div>

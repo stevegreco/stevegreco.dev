@@ -1,0 +1,5 @@
+dist/
+.astro/
+.vercel/
+.impeccable/
+pnpm-lock.yaml

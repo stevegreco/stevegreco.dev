@@ -1,0 +1,38 @@
+---
+import { Moon, Sun } from '@lucide/astro'
+import { buttonClassName } from '@/components/ui/button-variants'
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-label="Dark theme"
+  aria-pressed="false"
+  class={buttonClassName({ variant: 'outline', size: 'icon' })}
+>
+  <Moon class="h-[1.2rem] w-[1.2rem] dark:hidden" aria-hidden="true" />
+  <Sun class="hidden h-[1.2rem] w-[1.2rem] dark:block" aria-hidden="true" />
+</button>
+
+<script>
+  import { THEME_CHANGE_EVENT } from '@/lib/theme'
+
+  function syncPressed() {
+    const isDark = window.__theme.getResolved() === 'dark'
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+      button.setAttribute('aria-pressed', String(isDark))
+    })
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    syncPressed()
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const next = window.__theme.getResolved() === 'dark' ? 'light' : 'dark'
+        window.__theme.setPreference(next)
+      })
+    })
+  })
+
+  document.addEventListener(THEME_CHANGE_EVENT, syncPressed)
+</script>
