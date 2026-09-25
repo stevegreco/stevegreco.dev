@@ -2,7 +2,7 @@
 import NavButton from '@/components/NavButton.astro'
 import SocialLinks from '@/components/SocialLinks.astro'
 import MobileNavigation from './MobileNavigation.astro'
-import { ModeToggle } from '@/components/ModeToggle'
+import ThemeToggle from '@/components/ThemeToggle.astro'
 
 const pathname = Astro.url.pathname
 ---
@@ -40,7 +40,7 @@ const pathname = Astro.url.pathname
 
     <div class="flex items-center gap-4">
       <span class="hidden lg:block"><SocialLinks /></span>
-      <ModeToggle client:load />
+      <ThemeToggle />
       <span class="lg:hidden"><NavButton /></span>
     </div>
   </div>
