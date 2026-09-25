@@ -1,6 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import BlogList from '@/components/Sections/BlogList.astro'
+import { yearsOfExperience } from '@/lib/site'
 ---
 
 <Layout
@@ -16,7 +17,7 @@ import BlogList from '@/components/Sections/BlogList.astro'
         Senior Software Engineer
       </p>
       <p class="mt-4 text-lg text-muted-foreground leading-relaxed">
-        Building interfaces and design systems for over 12 years. Writing about
+        Building interfaces and design systems for over {yearsOfExperience} years. Writing about
         the intersection of Design Systems, AI, and front-end engineering.
       </p>
       <div
