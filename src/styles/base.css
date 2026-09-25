@@ -6,9 +6,11 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
-  --font-display: var(--primitives-font-display);
-  --font-custom: var(--primitives-font-sans);
+  --font-sans: var(--primitives-font-sans);
   --font-mono: var(--primitives-font-mono);
+
+  /* Layout widths: the one place pages reach into design-system primitives. */
+  --container-article: var(--primitives-layout-prose);
 
   --color-background: var(--semantic-color-background-default);
   --color-foreground: var(--semantic-color-foreground-default);
