@@ -1,20 +1,14 @@
 ---
-import { getCollection } from 'astro:content'
 import FormattedDate from '@/components/FormattedDate.astro'
+import { getSortedPosts } from '@/lib/blog'
 
-const blog_posts = await getCollection('blog')
-
-const posts = blog_posts
-  .sort((a, b) => {
-    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-  })
-  .slice(0, 5)
+const posts = (await getSortedPosts()).slice(0, 5)
 ---
 
 <div class="divide-y divide-border">
   {
     posts.map((post) => (
-      <a href={`/blog/${post.slug}`} class="group block py-5 first:pt-0">
+      <a href={`/blog/${post.id}`} class="group block py-5 first:pt-0">
         <div class="flex items-baseline gap-3 text-xs font-mono text-muted-foreground mb-1.5">
           <FormattedDate date={post.data.date} />
         </div>

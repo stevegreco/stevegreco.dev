@@ -3,27 +3,30 @@ import { Image } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate.astro'
 import Prose from '@/components/Prose.astro'
 import Layout from '@/layouts/Layout.astro'
+import { getCollection, render, type CollectionEntry } from 'astro:content'
+import { getReadingTime } from '@/lib/blog'
 
-import { getCollection } from 'astro:content'
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog')
   return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }))
 }
 
-const { entry } = Astro.props
-const { Content } = await entry.render()
+interface Props {
+  entry: CollectionEntry<'blog'>
+}
 
-const wordCount = entry.body?.split(/\s+/).length ?? 0
-const readingTime = Math.max(1, Math.ceil(wordCount / 250))
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const readingTime = getReadingTime(entry.body)
 ---
 
 <Layout
   title={entry.data.title}
-  description={entry.body.split('\n\n').find(p => p.trim() && !p.startsWith('#'))?.slice(0, 160) ?? entry.data.title}
-  image={`/blog/${entry.slug}.png`}
+  description={entry.data.description}
+  image={`/blog/${entry.id}.png`}
   type="article"
 >
   <article class="max-w-(--primitives-layout-prose) mx-auto px-4 py-4 md:py-6">
@@ -48,9 +51,9 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 250))
         {entry.data.title}
       </h1>
       {
-        entry.data.tags && entry.data.tags.length > 0 && (
+        entry.data.tags.length > 0 && (
           <div class="flex flex-wrap gap-2">
-            {entry.data.tags.map((tag: string) => (
+            {entry.data.tags.map((tag) => (
               <span class="text-xs font-mono px-2.5 py-1 bg-muted text-muted-foreground rounded-full">
                 {tag}
               </span>

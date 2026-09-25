@@ -2,8 +2,7 @@
 title: 'Building a Collaborative Development Culture'
 tags: ['teamwork', 'leadership', 'mentorship', 'collaboration']
 date: 2024-03-08T12:00:00-05:00
-author: 'Stephen Greco'
-avatar: '/avatar.png'
+description: "Lessons from over ten years as a team lead and mentor on building a development culture around collaboration."
 ---
 
 In my journey of over ten years in the development world, I've learned that the heart and soul of any successful team boil down to one word: collaboration. This isn't just a blog post; it's a casual chat about the insights I've gathered, the lessons I've learned, and the stories I've lived through as a team leader and mentor.

@@ -1,6 +1,5 @@
 {
   "title": "stevegreco.dev",
   "description": "My personal website build with Astro and deployed using Vercel.",
-  "thumbnail": "/stevegreco.png",
   "repo_url": "https://github.com/stevegreco/stevegreco.dev"
 }

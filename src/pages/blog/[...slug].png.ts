@@ -4,7 +4,7 @@ import { renderOGImage } from '@/lib/og-image'
 
 export const getStaticPaths = (async () => {
   return (await getCollection('blog')).map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }))
 }) satisfies GetStaticPaths
