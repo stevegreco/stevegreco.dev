@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '@/lib/utils'
+
+interface Props extends HTMLAttributes<'div'> {
+  title: string
+}
+
+const { title, class: className, ...props } = Astro.props
+---
+
+<div
+  class={cn(
+    'bg-card text-card-foreground flex flex-col gap-4 rounded-lg border p-6 shadow-sm',
+    className,
+  )}
+  {...props}
+>
+  <h2
+    class="inline-flex items-center gap-2 text-lg leading-none font-semibold tracking-tight"
+  >
+    <slot name="icon" />
+    {title}
+  </h2>
+  <div class="space-y-4">
+    <slot />
+  </div>
+</div>
