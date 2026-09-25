@@ -11,13 +11,14 @@ pnpm install
 pnpm dev      # start the dev server
 pnpm check    # type-check .astro and .ts files
 pnpm test     # run unit tests
+pnpm format   # format with Prettier
 pnpm build    # production build
 ```
 
 ## Content
 
 - Blog posts: `src/content/blog/*.md` (`title`, `description`, `date`, `tags`)
-- Projects: `src/content/projects/*.json`
+- Projects: `src/content/projects/*.json` (`title`, `description`, `repo_url`, `tech`)
 
 Collections are defined in `src/content.config.ts`. Each post gets a generated
 Open Graph image at `/blog/<id>.png`.
