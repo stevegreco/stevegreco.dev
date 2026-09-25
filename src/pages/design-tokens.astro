@@ -18,7 +18,7 @@ for (const match of designSystemCss.matchAll(tokenPattern)) {
 
 const colorTokens = tokens.filter((t) => t.name.startsWith('color-'))
 const anchors = colorTokens.filter((t) =>
-  ['color-white', 'color-black'].includes(t.name)
+  ['color-white', 'color-black'].includes(t.name),
 )
 
 const paletteMap = new Map<string, { token: TokenEntry; stop: string }[]>()
@@ -64,8 +64,8 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <h1>Design Tokens</h1>
       <p>
         Tier 1 primitive reference sourced from
-        <code>@stevegreco/design-system</code>.
-        Hidden from navigation — for design-system use only.
+        <code>@stevegreco/design-system</code>. Hidden from navigation — for
+        design-system use only.
       </p>
     </header>
 
@@ -74,31 +74,41 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <h2>Colors</h2>
 
       <div class="dt-anchors">
-        {anchors.map((t) => (
-          <div class="dt-anchor">
-            <span class="dt-anchor-swatch" style={`background-color: ${t.value}`} />
-            <div>
-              <p class="dt-token-name">{`--primitives-${t.name}`}</p>
-              <p class="dt-token-value">{t.value}</p>
+        {
+          anchors.map((t) => (
+            <div class="dt-anchor">
+              <span
+                class="dt-anchor-swatch"
+                style={`background-color: ${t.value}`}
+              />
+              <div>
+                <p class="dt-token-name">{`--primitives-${t.name}`}</p>
+                <p class="dt-token-value">{t.value}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
 
       <div class="dt-palettes">
-        {palettes.map((palette) => (
-          <div class="dt-palette">
-            <h3>{palette.label}</h3>
-            <div class="dt-palette-row">
-              {palette.stops.map(({ token, stop }) => (
-                <div class="dt-palette-cell">
-                  <span class="dt-swatch" style={`background-color: ${token.value}`} />
-                  <p class="dt-stop-label">{stop}</p>
-                </div>
-              ))}
+        {
+          palettes.map((palette) => (
+            <div class="dt-palette">
+              <h3>{palette.label}</h3>
+              <div class="dt-palette-row">
+                {palette.stops.map(({ token, stop }) => (
+                  <div class="dt-palette-cell">
+                    <span
+                      class="dt-swatch"
+                      style={`background-color: ${token.value}`}
+                    />
+                    <p class="dt-stop-label">{stop}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
 
@@ -106,15 +116,20 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Spacing</h2>
       <div class="dt-table">
-        {spacingTokens.map((t) => (
-          <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
-            <span class="dt-token-value dt-col-value">{t.value}</span>
-            <div class="dt-col-preview">
-              <span class="dt-spacing-bar" style={`width: ${t.value === '0' ? '0px' : t.value}`} />
+        {
+          spacingTokens.map((t) => (
+            <div class="dt-table-row">
+              <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
+              <span class="dt-token-value dt-col-value">{t.value}</span>
+              <div class="dt-col-preview">
+                <span
+                  class="dt-spacing-bar"
+                  style={`width: ${t.value === '0' ? '0px' : t.value}`}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
 
@@ -122,15 +137,17 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Font Size</h2>
       <div class="dt-table">
-        {fontSizeTokens.map((t) => (
-          <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
-            <span class="dt-token-value dt-col-value">{t.value}</span>
-            <p class="dt-col-preview" style={`font-size: ${t.value}`}>
-              The quick brown fox
-            </p>
-          </div>
-        ))}
+        {
+          fontSizeTokens.map((t) => (
+            <div class="dt-table-row">
+              <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
+              <span class="dt-token-value dt-col-value">{t.value}</span>
+              <p class="dt-col-preview" style={`font-size: ${t.value}`}>
+                The quick brown fox
+              </p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -138,14 +155,19 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Font Family</h2>
       <div class="dt-table">
-        {fontFamilyTokens.map((t) => (
-          <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
-            <p class="dt-col-preview" style={`font-family: ${t.value}; font-size: 1.125rem`}>
-              The quick brown fox jumps over the lazy dog
-            </p>
-          </div>
-        ))}
+        {
+          fontFamilyTokens.map((t) => (
+            <div class="dt-table-row">
+              <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
+              <p
+                class="dt-col-preview"
+                style={`font-family: ${t.value}; font-size: 1.125rem`}
+              >
+                The quick brown fox jumps over the lazy dog
+              </p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -153,15 +175,20 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Font Weight</h2>
       <div class="dt-table">
-        {fontWeightTokens.map((t) => (
-          <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
-            <span class="dt-token-value dt-col-value">{t.value}</span>
-            <p class="dt-col-preview" style={`font-weight: ${t.value}; font-size: 1.125rem`}>
-              The quick brown fox
-            </p>
-          </div>
-        ))}
+        {
+          fontWeightTokens.map((t) => (
+            <div class="dt-table-row">
+              <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
+              <span class="dt-token-value dt-col-value">{t.value}</span>
+              <p
+                class="dt-col-preview"
+                style={`font-weight: ${t.value}; font-size: 1.125rem`}
+              >
+                The quick brown fox
+              </p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -169,15 +196,21 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Line Height</h2>
       <div class="dt-table">
-        {leadingTokens.map((t) => (
-          <div class="dt-table-row dt-table-row--top">
-            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
-            <span class="dt-token-value dt-col-value">{t.value}</span>
-            <p class="dt-col-preview dt-leading-sample" style={`line-height: ${t.value}`}>
-              Design tokens are the atoms of a design system. They store decisions, not implementations.
-            </p>
-          </div>
-        ))}
+        {
+          leadingTokens.map((t) => (
+            <div class="dt-table-row dt-table-row--top">
+              <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
+              <span class="dt-token-value dt-col-value">{t.value}</span>
+              <p
+                class="dt-col-preview dt-leading-sample"
+                style={`line-height: ${t.value}`}
+              >
+                Design tokens are the atoms of a design system. They store
+                decisions, not implementations.
+              </p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -185,15 +218,20 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Letter Spacing</h2>
       <div class="dt-table">
-        {trackingTokens.map((t) => (
-          <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
-            <span class="dt-token-value dt-col-value">{t.value}</span>
-            <p class="dt-col-preview" style={`letter-spacing: ${t.value}; font-size: 1.125rem; text-transform: uppercase`}>
-              Design Tokens
-            </p>
-          </div>
-        ))}
+        {
+          trackingTokens.map((t) => (
+            <div class="dt-table-row">
+              <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
+              <span class="dt-token-value dt-col-value">{t.value}</span>
+              <p
+                class="dt-col-preview"
+                style={`letter-spacing: ${t.value}; font-size: 1.125rem; text-transform: uppercase`}
+              >
+                Design Tokens
+              </p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -201,13 +239,15 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Border Radius</h2>
       <div class="dt-visual-row">
-        {radiusTokens.map((t) => (
-          <div class="dt-visual-item">
-            <span class="dt-radius-box" style={`border-radius: ${t.value}`} />
-            <p class="dt-token-name">{`--primitives-${t.name}`}</p>
-            <p class="dt-token-value">{t.value}</p>
-          </div>
-        ))}
+        {
+          radiusTokens.map((t) => (
+            <div class="dt-visual-item">
+              <span class="dt-radius-box" style={`border-radius: ${t.value}`} />
+              <p class="dt-token-name">{`--primitives-${t.name}`}</p>
+              <p class="dt-token-value">{t.value}</p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -215,12 +255,14 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Shadows</h2>
       <div class="dt-shadow-surface">
-        {shadowTokens.map((t) => (
-          <div class="dt-visual-item">
-            <span class="dt-shadow-box" style={`box-shadow: ${t.value}`} />
-            <p class="dt-token-name">{`--primitives-${t.name}`}</p>
-          </div>
-        ))}
+        {
+          shadowTokens.map((t) => (
+            <div class="dt-visual-item">
+              <span class="dt-shadow-box" style={`box-shadow: ${t.value}`} />
+              <p class="dt-token-name">{`--primitives-${t.name}`}</p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -228,13 +270,15 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
     <section class="dt-section">
       <h2>Border Width</h2>
       <div class="dt-visual-row">
-        {borderTokens.map((t) => (
-          <div class="dt-visual-item">
-            <span class="dt-border-box" style={`border-width: ${t.value}`} />
-            <p class="dt-token-name">{`--primitives-${t.name}`}</p>
-            <p class="dt-token-value">{t.value}</p>
-          </div>
-        ))}
+        {
+          borderTokens.map((t) => (
+            <div class="dt-visual-item">
+              <span class="dt-border-box" style={`border-width: ${t.value}`} />
+              <p class="dt-token-name">{`--primitives-${t.name}`}</p>
+              <p class="dt-token-value">{t.value}</p>
+            </div>
+          ))
+        }
       </div>
     </section>
   </div>

@@ -9,7 +9,9 @@ export const getStaticPaths = (async () => {
   }))
 }) satisfies GetStaticPaths
 
-export const GET: APIRoute<{ post: CollectionEntry<'blog'> }> = async ({ props }) => {
+export const GET: APIRoute<{ post: CollectionEntry<'blog'> }> = async ({
+  props,
+}) => {
   const png = await renderOGImage(props.post.data.title)
 
   return new Response(new Uint8Array(png), {

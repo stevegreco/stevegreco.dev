@@ -66,7 +66,9 @@ export function installThemeRuntime() {
   media.addEventListener('change', applyAndNotify)
   // View transitions swap in a fresh <html>; theme it before it is shown.
   document.addEventListener('astro:before-swap', (event) => {
-    apply((event as Event & { newDocument: Document }).newDocument.documentElement)
+    apply(
+      (event as Event & { newDocument: Document }).newDocument.documentElement,
+    )
   })
 
   window.__theme = { getPreference, getResolved, setPreference }

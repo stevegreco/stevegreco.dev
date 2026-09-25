@@ -3,7 +3,13 @@ import test from 'node:test'
 
 import { installThemeRuntime } from '../src/lib/theme.ts'
 
-function setup({ stored, prefersDark }: { stored?: string; prefersDark: boolean }) {
+function setup({
+  stored,
+  prefersDark,
+}: {
+  stored?: string
+  prefersDark: boolean
+}) {
   const storage = new Map<string, string>(stored ? [['theme', stored]] : [])
   const attributes = new Map<string, string>()
   const mediaListeners: Array<() => void> = []
@@ -21,7 +27,8 @@ function setup({ stored, prefersDark }: { stored?: string; prefersDark: boolean 
     },
     document: {
       documentElement: {
-        setAttribute: (name: string, value: string) => attributes.set(name, value),
+        setAttribute: (name: string, value: string) =>
+          attributes.set(name, value),
         removeAttribute: (name: string) => attributes.delete(name),
       },
       addEventListener: () => {},
@@ -65,7 +72,10 @@ test('reads the legacy theme-light value as light', () => {
 })
 
 test('ignores unknown stored values', () => {
-  assert.equal(setup({ stored: 'purple', prefersDark: true }).api.getPreference(), 'system')
+  assert.equal(
+    setup({ stored: 'purple', prefersDark: true }).api.getPreference(),
+    'system',
+  )
 })
 
 test('setPreference persists and applies; system clears storage', () => {

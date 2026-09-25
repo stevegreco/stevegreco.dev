@@ -7,7 +7,8 @@ export const GET: APIRoute = async (context) => {
 
   return rss({
     title: 'Steve Greco - Writing',
-    description: 'Thoughts on Design Systems, AI, and the craft of building software.',
+    description:
+      'Thoughts on Design Systems, AI, and the craft of building software.',
     site: context.site!,
     items: posts.map((post) => ({
       title: post.data.title,
