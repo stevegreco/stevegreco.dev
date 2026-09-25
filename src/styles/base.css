@@ -37,16 +37,7 @@
 @layer base {
   :root {
     --tw-prose-headings: var(--semantic-color-foreground-default);
-    --radius: 0.625rem;
     --astro-logo: #17191e;
-    --sidebar: var(--semantic-color-background-raised);
-    --sidebar-foreground: var(--semantic-color-foreground-default);
-    --sidebar-primary: var(--semantic-color-accent-default);
-    --sidebar-primary-foreground: var(--semantic-color-accent-foreground);
-    --sidebar-accent: var(--semantic-color-background-muted);
-    --sidebar-accent-foreground: var(--semantic-color-foreground-default);
-    --sidebar-border: var(--semantic-color-border-default);
-    --sidebar-ring: var(--semantic-color-accent-default);
   }
 
   :root[data-theme="dark"] {
