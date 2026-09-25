@@ -4,7 +4,7 @@ import FormattedDate from '@/components/FormattedDate.astro'
 import Prose from '@/components/Prose.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
-import { getReadingTime } from '@/lib/blog'
+import { getReadingTime } from '@/lib/reading-time'
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog')
