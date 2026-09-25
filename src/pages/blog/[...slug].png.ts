@@ -1,22 +1,18 @@
-import sharp from 'sharp'
-import type { APIRoute } from 'astro'
-import { getOGImage } from '../../components/OGImage'
-import { getCollection } from 'astro:content'
+import type { APIRoute, GetStaticPaths } from 'astro'
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { renderOGImage } from '@/lib/og-image'
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   return (await getCollection('blog')).map((post) => ({
-    params: { slug: post.slug, title: post.data.title },
+    params: { slug: post.slug },
     props: { post },
   }))
-}
+}) satisfies GetStaticPaths
 
-export const GET: APIRoute = async function get({ params, request, props }) {
-  const svg = await getOGImage(props.post.data.title)
-  const png = await sharp(Buffer.from(svg)).png().toBuffer()
+export const GET: APIRoute<{ post: CollectionEntry<'blog'> }> = async ({ props }) => {
+  const png = await renderOGImage(props.post.data.title)
 
-  return new Response(png, {
-    headers: {
-      'Content-Type': 'image/png',
-    },
+  return new Response(new Uint8Array(png), {
+    headers: { 'Content-Type': 'image/png' },
   })
 }

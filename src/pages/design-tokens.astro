@@ -1,17 +1,17 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import '@/styles/design-tokens-page.css'
-import primitivesCss from '@/styles/tokens/primitives.css?raw'
+import designSystemCss from '@stevegreco/design-system/css?raw'
 
 interface TokenEntry {
   name: string
   value: string
 }
 
-const tokenPattern = /--([a-z0-9-]+):\s*([^;]+);/g
+const tokenPattern = /--primitives-([a-z0-9-]+):\s*([^;]+);/g
 const tokens: TokenEntry[] = []
 
-for (const match of primitivesCss.matchAll(tokenPattern)) {
+for (const match of designSystemCss.matchAll(tokenPattern)) {
   const [, name, value] = match
   tokens.push({ name, value: value.trim() })
 }
@@ -66,7 +66,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <h1>Design Tokens</h1>
       <p>
         Tier 1 primitive reference sourced from
-        <code>primitives.css</code>.
+        <code>@stevegreco/design-system</code>.
         Hidden from navigation — for design-system use only.
       </p>
     </header>
@@ -80,7 +80,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
           <div class="dt-anchor">
             <span class="dt-anchor-swatch" style={`background-color: ${t.value}`} />
             <div>
-              <p class="dt-token-name">{`--${t.name}`}</p>
+              <p class="dt-token-name">{`--primitives-${t.name}`}</p>
               <p class="dt-token-value">{t.value}</p>
             </div>
           </div>
@@ -110,7 +110,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <div class="dt-table">
         {spacingTokens.map((t) => (
           <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--${t.name}`}</span>
+            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
             <span class="dt-token-value dt-col-value">{t.value}</span>
             <div class="dt-col-preview">
               <span class="dt-spacing-bar" style={`width: ${t.value === '0' ? '0px' : t.value}`} />
@@ -126,7 +126,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <div class="dt-table">
         {fontSizeTokens.map((t) => (
           <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--${t.name}`}</span>
+            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
             <span class="dt-token-value dt-col-value">{t.value}</span>
             <p class="dt-col-preview" style={`font-size: ${t.value}`}>
               The quick brown fox
@@ -142,7 +142,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <div class="dt-table">
         {fontFamilyTokens.map((t) => (
           <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--${t.name}`}</span>
+            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
             <p class="dt-col-preview" style={`font-family: ${t.value}; font-size: 1.125rem`}>
               The quick brown fox jumps over the lazy dog
             </p>
@@ -157,7 +157,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <div class="dt-table">
         {fontWeightTokens.map((t) => (
           <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--${t.name}`}</span>
+            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
             <span class="dt-token-value dt-col-value">{t.value}</span>
             <p class="dt-col-preview" style={`font-weight: ${t.value}; font-size: 1.125rem`}>
               The quick brown fox
@@ -173,7 +173,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <div class="dt-table">
         {leadingTokens.map((t) => (
           <div class="dt-table-row dt-table-row--top">
-            <span class="dt-token-name dt-col-name">{`--${t.name}`}</span>
+            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
             <span class="dt-token-value dt-col-value">{t.value}</span>
             <p class="dt-col-preview dt-leading-sample" style={`line-height: ${t.value}`}>
               Design tokens are the atoms of a design system. They store decisions, not implementations.
@@ -189,7 +189,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
       <div class="dt-table">
         {trackingTokens.map((t) => (
           <div class="dt-table-row">
-            <span class="dt-token-name dt-col-name">{`--${t.name}`}</span>
+            <span class="dt-token-name dt-col-name">{`--primitives-${t.name}`}</span>
             <span class="dt-token-value dt-col-value">{t.value}</span>
             <p class="dt-col-preview" style={`letter-spacing: ${t.value}; font-size: 1.125rem; text-transform: uppercase`}>
               Design Tokens
@@ -206,7 +206,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
         {radiusTokens.map((t) => (
           <div class="dt-visual-item">
             <span class="dt-radius-box" style={`border-radius: ${t.value}`} />
-            <p class="dt-token-name">{`--${t.name}`}</p>
+            <p class="dt-token-name">{`--primitives-${t.name}`}</p>
             <p class="dt-token-value">{t.value}</p>
           </div>
         ))}
@@ -220,7 +220,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
         {shadowTokens.map((t) => (
           <div class="dt-visual-item">
             <span class="dt-shadow-box" style={`box-shadow: ${t.value}`} />
-            <p class="dt-token-name">{`--${t.name}`}</p>
+            <p class="dt-token-name">{`--primitives-${t.name}`}</p>
           </div>
         ))}
       </div>
@@ -233,7 +233,7 @@ const borderTokens = tokens.filter((t) => t.name.startsWith('border-'))
         {borderTokens.map((t) => (
           <div class="dt-visual-item">
             <span class="dt-border-box" style={`border-width: ${t.value}`} />
-            <p class="dt-token-name">{`--${t.name}`}</p>
+            <p class="dt-token-name">{`--primitives-${t.name}`}</p>
             <p class="dt-token-value">{t.value}</p>
           </div>
         ))}
