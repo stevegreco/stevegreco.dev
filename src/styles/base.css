@@ -17,7 +17,7 @@
   --color-border: var(--semantic-color-border-default);
   --color-primary: var(--semantic-color-accent-default);
   --color-primary-foreground: var(--semantic-color-accent-foreground);
-  --color-secondary: var(--semantic-color-secondary-default);
+  --color-secondary: var(--semantic-color-secondary-soft);
   --color-secondary-foreground: var(--semantic-color-foreground-default);
   --color-card: var(--semantic-color-background-raised);
   --color-card-foreground: var(--semantic-color-foreground-default);
@@ -28,14 +28,9 @@
   --color-accent: var(--semantic-color-accent-soft);
   --color-accent-foreground: var(--semantic-color-accent-default);
   --color-destructive: var(--semantic-color-status-danger-default);
-  --color-destructive-foreground: var(--semantic-color-status-danger-background);
+  --color-destructive-foreground: var(--semantic-color-foreground-on-accent);
   --color-input: var(--semantic-color-border-default);
   --color-ring: var(--semantic-color-accent-default);
-  --color-chart-1: oklch(0.646 0.222 41.116);
-  --color-chart-2: oklch(0.6 0.118 184.704);
-  --color-chart-3: oklch(0.398 0.07 227.392);
-  --color-chart-4: oklch(0.828 0.189 84.429);
-  --color-chart-5: oklch(0.769 0.188 70.08);
 }
 
 @layer base {
