@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content'
 import { z } from 'astro/zod'
 import { glob } from 'astro/loaders'
+import { TECH } from './lib/tech'
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
@@ -20,6 +21,7 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     repo_url: z.url(),
+    tech: z.array(z.enum(TECH)).default([]),
   }),
 })
 
