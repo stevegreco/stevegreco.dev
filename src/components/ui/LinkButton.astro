@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { buttonClassName, type ButtonVariantProps } from './button'
+
+type Props = HTMLAttributes<'a'> & ButtonVariantProps
+
+const { class: className, variant, size, target, rel, ...props } = Astro.props
+---
+
+<a
+  {...props}
+  target={target}
+  rel={rel ?? (target === '_blank' ? 'noopener noreferrer' : undefined)}
+  class={buttonClassName({ variant, size, className: className ?? undefined })}
+>
+  <slot />
+</a>

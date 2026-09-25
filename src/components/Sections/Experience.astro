@@ -2,7 +2,7 @@
 import { Briefcase, Download } from 'lucide-react'
 import JobEntry from './JobEntry.astro'
 import { Card, CardContent, CardTitle } from '@/components/ui/card'
-import { LinkButton } from '@/components/ui/link-button'
+import LinkButton from '@/components/ui/LinkButton.astro'
 ---
 
 <Card>
@@ -29,7 +29,7 @@ import { LinkButton } from '@/components/ui/link-button'
       </div>
 
       <LinkButton href="/Resume.pdf" target="_blank">
-        Download Resume <Download />
+        Download Resume <Download aria-hidden="true" />
       </LinkButton>
     </div>
   </CardContent>

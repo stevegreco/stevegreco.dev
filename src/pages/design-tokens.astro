@@ -21,8 +21,6 @@ const anchors = colorTokens.filter((t) =>
   ['color-white', 'color-black'].includes(t.name)
 )
 
-const stops = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950']
-
 const paletteMap = new Map<string, { token: TokenEntry; stop: string }[]>()
 for (const token of colorTokens) {
   if (token.name === 'color-white' || token.name === 'color-black') continue
