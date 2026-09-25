@@ -18,6 +18,7 @@ const projects = await getCollection('projects')
           <a
             class="w-full rounded-lg p-4"
             target="_blank"
+            rel="noopener noreferrer"
             href={project.data.repo_url}
           >
             <div class="lg:flex justify-start gap-y-4 lg:gap-4">
@@ -29,12 +30,13 @@ const projects = await getCollection('projects')
                 <div class="mt-2 flex gap-2 justify-between items-center">
                   <div class="flex justify-center items-center gap-2">
                     <img
-                      class="h-6 w-6 text-primary"
+                      class="h-6 w-6"
                       src={tsSVG.src}
-                      alt="typescript logo"
+                      alt=""
                     />
                     <svg
                       class="text-foreground size-6"
+                      aria-hidden="true"
                       viewBox="0 0 85 107"
                       fill="currentColor"
                       xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +52,7 @@ const projects = await getCollection('projects')
                     </svg>
                   </div>
                   <div class="flex justify-start items-center gap-2 text-sm">
-                    <Code />
+                    <Code aria-hidden="true" />
                     github.com
                   </div>
                 </div>
